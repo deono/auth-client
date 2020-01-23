@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { reduxForm, Field } from "redux-form";
 
 export class Signin extends Component {
   state = {
@@ -27,25 +28,22 @@ export class Signin extends Component {
               <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
                   <label htmlFor="email">Email address</label>
-                  <input
-                    type="email"
+                  <Field
                     className="form-control"
-                    id="email"
                     name="email"
-                    value={this.state.value}
-                    onChange={this.handleInputChange}
-                    aria-describedby="emailHelp"
+                    type="text"
+                    component="input"
+                    autoComplete="none"
                   />
                 </div>
                 <div className="form-group">
                   <label htmlFor="password">Password</label>
-                  <input
-                    type="password"
-                    name="password"
-                    value={this.state.password}
-                    onChange={this.handleInputChange}
+                  <Field
                     className="form-control"
-                    id="password"
+                    name="password"
+                    type="password"
+                    component="input"
+                    autoComplete="none"
                   />
                 </div>
                 <div className="d-flex justify-content-end">
@@ -62,4 +60,4 @@ export class Signin extends Component {
   }
 }
 
-export default Signin;
+export default reduxForm({ name: "signin" })(Signin);
