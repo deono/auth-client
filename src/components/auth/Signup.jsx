@@ -38,6 +38,11 @@ export class Signup extends Component {
                     autoComplete="none"
                   />
                 </div>
+                {this.props.errorMessage !== "" && (
+                  <div class="alert alert-danger" role="alert">
+                    {this.props.errorMessage}
+                  </div>
+                )}
                 <div className="d-flex justify-content-end">
                   <button className="btn btn-primary" type="submit">
                     Sign up
@@ -52,7 +57,13 @@ export class Signup extends Component {
   }
 }
 
+function mapStateTopProps(state) {
+  return {
+    errorMessage: state.auth.errorMessage
+  };
+}
+
 export default compose(
-  connect(null, actions),
+  connect(mapStateTopProps, actions),
   reduxForm({ form: "signup" })
 )(Signup);
