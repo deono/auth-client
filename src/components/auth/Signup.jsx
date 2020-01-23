@@ -2,30 +2,19 @@ import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 
 export class Signup extends Component {
-  state = {
-    email: "",
-    password: ""
-  };
-
-  handleInputChange = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-    // dispatch action here
+  onSubmit = formProps => {
+    console.log(formProps);
   };
   render() {
+    // method provided by redux-form
+    const { handleSubmit } = this.props;
     return (
       <div className="container">
         <div className="row justify-content-center align-items-center">
           <div className="card col-10 col-sm-8 col-md-6 col-lg-4">
             <div className="card-body">
               <h3 className="card-title text-center">Sign Up</h3>
-              {/* Login form */}
-              <form onSubmit={this.handleSubmit}>
+              <form onSubmit={handleSubmit(this.onSubmit)}>
                 <div className="form-group">
                   <label htmlFor="email">Email address</label>
                   <Field
@@ -48,7 +37,7 @@ export class Signup extends Component {
                 </div>
                 <div className="d-flex justify-content-end">
                   <button className="btn btn-primary" type="submit">
-                    Submit
+                    Sign up
                   </button>
                 </div>
               </form>
